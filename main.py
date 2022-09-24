@@ -1,28 +1,36 @@
 from tkinter import *
+import settings
+import utils
 
 root = Tk()
 # override the setting of the windows
 root.configure(bg="gray") # Setting backgroud color
-width, height = (720,480)
-root.geometry(f"{width}x{height}") # Width * Height
+root.geometry(f"{settings.WIDTH}x{settings.HEIGHT}") # Width * Height
 root.title("Minesweeper Game")
 root.resizable(False, False) # to fix Width and Height respectively
 
 top_frame = Frame(
 	root,
-	bg="red", # color of frame
-	width = width,
-	height = 80,
+	bg="black", # color of frame
+	width = settings.WIDTH,
+	height = utils.height_prct(25),
 )
-top_frame.place(x=0,y=0)
+
 left_frame = Frame(
 	root,
-	bg ="blue",
-	width = 120,
-	height = root.winfo_screenheight())
+	bg ="black",
+	width = utils.width_prct(25),
+	height = utils.height_prct(75)
+	)
+center_frame = Frame(
+	root,
+	bg='green',
+	width=utils.width_prct(75),
+	height=utils.height_prct(75)
+	)
 
-
-
-left_frame.place(x=0, y=80)
+top_frame.place(x=0,y=0)
+center_frame.place(x=utils.width_prct(25), y=utils.height_prct(25))
+left_frame.place(x=0, y=utils.height_prct(25))
 # Run the window
 root.mainloop()
