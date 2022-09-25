@@ -37,8 +37,19 @@ center_frame.place(x=utils.width_prct(25), y=utils.height_prct(25))
 left_frame.place(x=0, y=utils.height_prct(25))
 
 
-c1 = Cell()
-c1.create_btn_object(center_frame)
-c1.cell_btn_object.place(x=0,y=0)
+# c1 = Cell() # for multiple button better to use grid instead of place
+# c1.create_btn_object(center_frame)
+# c1.cell_btn_object.place(x=0,y=0)
+
+for x in range(settings.GRID_SIZE):
+	for y in range(settings.GRID_SIZE):
+		c = Cell(x,y)
+		c.create_btn_object(center_frame)
+		c.cell_btn_object.grid(
+			column = x,
+			row = y)
+
+Cell.randomize_mines()
 # Run the window
+# print(Cell.all_cells)
 root.mainloop()
